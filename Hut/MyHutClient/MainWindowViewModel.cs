@@ -7,7 +7,8 @@ using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Composite.Presentation.Commands;
 using MyHutClient.HutServices;
 using System.Collections.ObjectModel;
-
+using Microsoft.Practices.Prism.Commands;
+using System.ComponentModel;
 
 namespace MyHutClient
 {
@@ -22,7 +23,13 @@ namespace MyHutClient
         {
             _CurrentOrder.OrderDate = DateTime.Now.ToString();
             _CurrentOrder.OrderStatusID = 1;
-            var SubitOrderComand = new DelegateComand(OnSubmitOrder);
+            SubitOrderComand = new DelegateCommand(OnSubmitOrder);
+            AddOrderItemCommand = new DelegateCommand<Product>(OnAddItem);
+            if(!DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+            {
+                LoadProductsandCustoers();
+            }
+
         }
 
         public ObservableCollection<Product> Products
@@ -36,6 +43,23 @@ namespace MyHutClient
             set { SetProperty(ref _Customers, value); }
         }
 
+        public ObservableCollection<Hut.OrderItem> Items
+        {
+            get { return _Items; }
+            set { SetProperty(ref _Items, value); }
+        }
+        public Order CurrentOrder
+        {
+            get { return _CurrentOrder; }
+            set { SetProperty(ref _CurrentOrder, value); }
+        }
+        public DelegateCommand SubitOrderComand { get; private set; }
+        public Microsoft.Practices.Composite.Presentation.Commands.DelegateCommand<Product> AddOrderItemCommand { get; private set; }
+
+        private void OnAddItem(Order order)
+        {
+            
+        }
         private async void LoadProductsandCustoers()
         {
             HutServiceClient proxy = new HutServiceClient();
