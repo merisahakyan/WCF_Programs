@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Composite.Presentation.Commands;
 using MyHutClient.HutServices;
 using System.Collections.ObjectModel;
 using Microsoft.Practices.Prism.Commands;
@@ -24,7 +19,7 @@ namespace MyHutClient
             _CurrentOrder.OrderDate = DateTime.Now.ToString();
             _CurrentOrder.OrderStatusID = 1;
             SubitOrderComand = new DelegateCommand(OnSubmitOrder);
-            AddOrderItemCommand = new DelegateCommand<Product>(OnAddItem);
+            AddOrderItemCommand = new Microsoft.Practices.Composite.Presentation.Commands.DelegateCommand<Product>(OnAddItem);
             if(!DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
             {
                 LoadProductsandCustoers();
