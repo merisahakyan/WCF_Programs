@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="96404b94-074a-4b0f-a3f1-d1ac3797f1d2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/SimpleService/BookShopService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="1abe84ba-1b5c-4bcf-907f-986611a5c3f7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SimpleService/BookShopService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="990e11a7-a090-4949-b65c-e1b67ac9a056" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SimpleService/BookShopService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="db458ad5-b4a7-456b-ae1e-984f7d7fdbca" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SimpleService/BookShopService/mex" />
+    <MetadataFile FileName="SimpleService.xsd" MetadataType="Schema" ID="b5c419b5-380d-4f7f-a56d-7e101840b44e" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SimpleService/BookShopService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
