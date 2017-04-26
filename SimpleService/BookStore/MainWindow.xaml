@@ -25,9 +25,11 @@
                 <TextBox Width="150" Height="20" Margin="10 0 0 0" x:Name="searchtext"/>
                 <Button x:Name="Search_Button" Content="Search" Height="20" Width="40" Margin="5 0 0 0" Click="Search_Button_Click"/>
             </StackPanel>
-            <ListBox Height="280" Margin="0 7 0 0" x:Name="listbox">
-                
-            </ListBox>
+            <Label Content="Name              Author              Genre              Price"/>
+            <ListBox Height="260"  x:Name="listbox"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0">
+            <Label Content="My Card"/>
         </StackPanel>
     </Grid>
 </Window>
