@@ -26,10 +26,15 @@
                 <Button x:Name="Search_Button" Content="Search" Height="20" Width="40" Margin="5 0 0 0" Click="Search_Button_Click"/>
             </StackPanel>
             <Label Content="Name              Author              Genre              Price"/>
-            <ListBox Height="260"  x:Name="listbox"/>
+            <ListBox Height="260"  x:Name="books_listbox"/>
         </StackPanel>
         <StackPanel Grid.Column="0">
             <Label Content="My Card"/>
+            <ListBox Height="260" Margin="0 26 0 0" x:Name="card_listbox"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 >
+                
+            </ListBox>
         </StackPanel>
     </Grid>
 </Window>
