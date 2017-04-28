@@ -34,7 +34,8 @@ namespace BookStore
         {
             BookShopClient proxy = new BookShopClient();
             var list = await proxy.GetBooksAsync();
-            books_listbox.Items.Remove(sp);
+            while (books_listbox.Items.Count > 0)
+                books_listbox.Items.RemoveAt(0);
 
             switch (combo.SelectedIndex)
             {
@@ -81,18 +82,24 @@ namespace BookStore
 
                             sp_forcard = new StackPanel();
                             sp_forcard.Orientation = Orientation.Horizontal;
-                            sp_forcard.Name = "i" + book.ID.ToString();
+                            sp_forcard.Name = "i" + id.ToString();
 
                             label = new Label();
                             label.Content = $"{book.Name}";
 
                             Remove_btn = new Button();
                             Remove_btn.Content = "Remove";
-                            Remove_btn.Name = "i" + card_listbox.Items.Count.ToString();
+                            Remove_btn.Name = "i" + id.ToString();
                             Remove_btn.Click += (se, ear) =>
                               {
                                   book.Quantity++;
-                                  card_listbox.Items.RemoveAt(int.Parse((se as Button).Name.Trim('i')));
+                                  foreach (var k in card_listbox.Items)
+                                      if ((k as StackPanel).Name == (se as Button).Name)
+                                      {
+                                          remove_sp = (StackPanel)k;
+                                          break;
+                                      }
+                                  card_listbox.Items.Remove(remove_sp);
                               };
 
                             sp_forcard.Children.Add(label);
