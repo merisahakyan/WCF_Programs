@@ -32,12 +32,32 @@ namespace BookShop
             InitializeComponent();
             InitializeBooks();
             InitializeCard();
-
-            AddToCard();
+            ShowCardList();
         }
         void InitializeBooks()
         {
-            list_books = bookclient.GetBooks();
+            switch (combo.SelectedIndex)
+            {
+                case 0:
+                    list_books = bookclient.GetBooksByAuthor(searchtext.Text);
+                    break;
+                case 1:
+                    list_books = bookclient.GetBooksByName(searchtext.Text);
+                    break;
+                case 2:
+                    list_books[0] = bookclient.GetBookByID(searchtext.Text);
+                    break;
+                case 3:
+                    list_books = bookclient.GetBooksByPrice(searchtext.Text);
+                    break;
+                case 4:
+                    list_books = bookclient.GetBooksByGenre(searchtext.Text);
+                    break;
+                default:
+                    list_books = bookclient.GetBooks();
+                    break;
+            }
+
         }
         void InitializeCard()
         {
@@ -64,7 +84,7 @@ namespace BookShop
                     InitializeBooks();
                     InitializeCard();
                     ShowBooksList();
-                    AddToCard();
+                    ShowCardList();
                 };
                 add_btn.Content = "Add to cart";
 
@@ -76,65 +96,14 @@ namespace BookShop
             }
         }
 
-        private async void Search_Button_Click(object sender, RoutedEventArgs e)
+        private void Search_Button_Click(object sender, RoutedEventArgs e)
         {
-            while (books_listbox.Items.Count > 0)
-                books_listbox.Items.RemoveAt(0);
-
-            switch (combo.SelectedIndex)
-            {
-                case 0:
-                    list_books = await bookclient.GetBooksByAuthorAsync(searchtext.Text);
-                    break;
-                case 1:
-                    list_books = await bookclient.GetBooksByNameAsync(searchtext.Text);
-                    break;
-                case 2:
-                    list_books[0] = await bookclient.GetBookByIDAsync(searchtext.Text);
-                    break;
-                case 3:
-                    list_books = await bookclient.GetBooksByPriceAsync(searchtext.Text);
-                    break;
-                case 4:
-                    list_books = await bookclient.GetBooksByGenreAsync(searchtext.Text);
-                    break;
-                default:
-                    list_books = await bookclient.GetBooksAsync();
-                    break;
-            }
-
-            foreach (var m in list_books)
-            {
-                sp = new StackPanel();
-                sp.Orientation = Orientation.Horizontal;
-
-                label_books = new Label();
-                label_books.Content = $"{m.Name}  {m.Author}  {m.Genre}  {m.Price}$   {m.Quantity}";
-                sp.Children.Add(label_books);
-
-                add_btn = new Button();
-                add_btn.Name = "i" + Convert.ToString(m.ID);
-                add_btn.Click += (s, ea) =>
-                {
-                    oncardclient.AddToCard((s as Button).Name);
-                    InitializeBooks();
-                    InitializeCard();
-                    ShowBooksList();
-                    AddToCard();
-                };
-                add_btn.Content = "Add to cart";
-
-
-                sp.Children.Add(add_btn);
-                sp.Name = "i" + Convert.ToString(m.ID);
-
-                books_listbox.Items.Add(sp);
-            }
-
+            InitializeBooks();
+            ShowBooksList();
         }
 
 
-        private void AddToCard()
+        private void ShowCardList()
         {
 
             while (card_listbox.Items.Count > 0)
@@ -151,13 +120,13 @@ namespace BookShop
                 remove_btn = new Button();
                 remove_btn.Name = "i" + Convert.ToString(m.ID);
                 remove_btn.Content = "Remove";
-                remove_btn.Click += (s,ea) =>
+                remove_btn.Click += (s, ea) =>
                   {
                       oncardclient.RemoveFromCard((s as Button).Name);
                       InitializeBooks();
                       InitializeCard();
                       ShowBooksList();
-                      AddToCard();
+                      ShowCardList();
                   };
                 sp.Children.Add(remove_btn);
 
