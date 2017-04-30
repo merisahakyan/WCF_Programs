@@ -25,7 +25,22 @@
                 <TextBox Width="150" Height="20" Margin="10 0 0 0" x:Name="searchtext"/>
                 <Button x:Name="Search_Button" Content="Search" Height="20" Width="40" Margin="5 0 0 0" Click="Search_Button_Click"/>
             </StackPanel>
-            <Label Content="Name              Author              Genre              Price"/>
+            <Grid x:Name="books_grid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Name" Grid.Column="0"/>
+                <Label Content="Author" Grid.Column="1"/>
+                <Label Content="Genre" Grid.Column="2"/>
+                <Label Content="Price" Grid.Column="3"/>
+                <Label Content="Quantity" Grid.Column="4"/>
+            </Grid>
+            
             <ListBox Height="260"  x:Name="books_listbox"/>
         </StackPanel>
         <StackPanel Grid.Column="0">

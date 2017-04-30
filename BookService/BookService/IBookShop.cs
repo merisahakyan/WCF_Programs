@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
 
 namespace BookService
 {
@@ -25,13 +21,5 @@ namespace BookService
         List<Book> GetBooksByPrice(string price);
         [OperationContract]
         List<Book> Search(string value);
-
-
-
-
-        
-
     }
-
-    
 }

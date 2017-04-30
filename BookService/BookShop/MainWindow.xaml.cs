@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using BookShop.BookService;
 
 namespace BookShop
@@ -22,6 +11,7 @@ namespace BookShop
     public partial class MainWindow : Window
     {
         StackPanel sp;
+        Grid grid;
         Label label_books, label;
         Button add_btn, remove_btn;
         Book[] list_books, list_card;
@@ -69,12 +59,39 @@ namespace BookShop
                 books_listbox.Items.RemoveAt(0);
             foreach (var m in list_books)
             {
-                sp = new StackPanel();
-                sp.Orientation = Orientation.Horizontal;
+                grid = new Grid();
+                grid.Height = 30;
+                ColumnDefinition[] c = new ColumnDefinition[6];
+                for(int i=0;i<6;i++)
+                {
+                    c[i] = new ColumnDefinition();
+                    c[i].Width = new GridLength(1, GridUnitType.Star);
+                }
+                
+                label = new Label();
+                label.Content = $"{m.Name}";
+                grid.Children.Add(label);
+                Grid.SetColumn(label, 0);
 
-                label_books = new Label();
-                label_books.Content = $"{m.Name}  {m.Author}  {m.Genre}  {m.Price}$   {m.Quantity}";
-                sp.Children.Add(label_books);
+                label = new Label();
+                label.Content = $"{m.Author}";
+                grid.Children.Add(label);
+                Grid.SetColumn(label, 1);
+
+                label = new Label();
+                label.Content = $"{m.Genre}";
+                grid.Children.Add(label);
+                Grid.SetColumn(label, 2);
+
+                label = new Label();
+                label.Content = $"{m.Price}";
+                grid.Children.Add(label);
+                Grid.SetColumn(label, 3);
+
+                label = new Label();
+                label.Content = $"{m.Quantity}";
+                grid.Children.Add(label);
+                Grid.SetColumn(label, 4);
 
                 add_btn = new Button();
                 add_btn.Name = "i" + Convert.ToString(m.ID);
@@ -87,12 +104,15 @@ namespace BookShop
                     ShowCardList();
                 };
                 add_btn.Content = "Add to cart";
+                grid.Children.Add(add_btn);
+                Grid.SetColumn(add_btn, 5);
 
+                for (int i = 0; i < 6; i++)
+                {
+                    grid.ColumnDefinitions.Add(c[i]);
+                }
 
-                sp.Children.Add(add_btn);
-                sp.Name = "i" + Convert.ToString(m.ID);
-
-                books_listbox.Items.Add(sp);
+                books_listbox.Items.Add(grid);
             }
         }
 
@@ -131,6 +151,47 @@ namespace BookShop
                 sp.Children.Add(remove_btn);
 
                 card_listbox.Items.Add(sp);
+
+                //grid = new Grid();
+                //grid.Height = 30;
+                //ColumnDefinition[] x = new ColumnDefinition[3];
+                //for (int i = 0; i < 3; i++)
+                //{
+                //    x[i] = new ColumnDefinition();
+                //    x[i].Width = new GridLength(1, GridUnitType.Star);
+                //}
+
+
+                //label = new Label();
+                //label.Content = $"{m.Name}";
+                //grid.Children.Add(label);
+                //Grid.SetColumn(label, 0);
+                //grid.ColumnDefinitions.Add(x[0]);
+
+                //label = new Label();
+                //label.Content = $"{m.OnCard}";
+                //grid.Children.Add(label);
+                //Grid.SetColumn(label, 1);
+                //grid.ColumnDefinitions.Add(x[1]);
+
+
+                //remove_btn = new Button();
+                //remove_btn.Name = "i" + Convert.ToString(m.ID);
+                //remove_btn.Content = "Remove";
+                //remove_btn.Click += (s, ea) =>
+                //{
+                //    oncardclient.RemoveFromCard((s as Button).Name);
+                //    InitializeBooks();
+                //    InitializeCard();
+                //    ShowBooksList();
+                //    ShowCardList();
+                //};
+                //grid.Children.Add(remove_btn);
+                //Grid.SetColumn(label, 2);
+                //grid.ColumnDefinitions.Add(x[2]);
+
+
+                //card_listbox.Items.Add(grid);
             }
         }
     }
