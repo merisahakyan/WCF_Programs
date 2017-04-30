@@ -1,0 +1,40 @@
+﻿<Window x:Class="BookShop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookShop"
+        mc:Ignorable="d"
+        Title="BookShop" Height="350" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Search By"/>
+                <ComboBox Width="70" Margin="5 0 0 0" Height="20" x:Name="combo">
+                    <ComboBoxItem Content="Author"/>
+                    <ComboBoxItem Content="Name"/>
+                    <ComboBoxItem Content="ID"/>
+                    <ComboBoxItem Content="Price"/>
+                    <ComboBoxItem Content="Genre"/>
+                    <ComboBoxItem Content="Siple Search"/>
+                </ComboBox>
+                <TextBox Width="150" Height="20" Margin="10 0 0 0" x:Name="searchtext"/>
+                <Button x:Name="Search_Button" Content="Search" Height="20" Width="40" Margin="5 0 0 0" Click="Search_Button_Click"/>
+            </StackPanel>
+            <Label Content="Name              Author              Genre              Price"/>
+            <ListBox Height="260"  x:Name="books_listbox"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0">
+            <Label Content="My Card"/>
+            <ListBox Height="260" Margin="0 26 0 0" x:Name="card_listbox"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 >
+
+            </ListBox>
+        </StackPanel>
+    </Grid>
+</Window>

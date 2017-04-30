@@ -18,7 +18,7 @@ namespace SimpleService
         {
             int i = int.Parse(id);
             List<Book> list = new List<Book>();
-            foreach (var m in _context.Books)
+            foreach (var m in _context.Books )
             {
                 if (m.ID==i)
                     list.Add(m);

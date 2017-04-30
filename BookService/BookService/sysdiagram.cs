@@ -7,19 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SimpleService
+namespace BookService
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Book
+    public partial class sysdiagram
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Author { get; set; }
-        public decimal Price { get; set; }
-        public string Description { get; set; }
-        public string Genre { get; set; }
-        public int Quantity { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

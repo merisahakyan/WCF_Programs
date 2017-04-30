@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SimpleService
+namespace Service
 {
     using System;
     using System.Data.Entity;
@@ -26,5 +26,7 @@ namespace SimpleService
         }
     
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<OnCard> OnCards { get; set; }
     }
 }
