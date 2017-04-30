@@ -16,16 +16,7 @@
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
           <Property Name="Genre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Books.dbo.OnCard' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="OnCard">
-          <Key>
-            <PropertyRef Name="Quantity" />
-            <PropertyRef Name="BookId" />
-          </Key>
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="OnCard" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -37,31 +28,9 @@ warning 6002: The table/view 'Books.dbo.OnCard' does not have a primary key defi
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK_1234">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
-          <End Role="OnCard" Type="Self.OnCard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="OnCard">
-              <PropertyRef Name="BookId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="BooksModelStoreContainer">
           <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OnCard" EntityType="Self.OnCard" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [OnCard].[Quantity] AS [Quantity], 
-    [OnCard].[BookId] AS [BookId]
-    FROM [dbo].[OnCard] AS [OnCard]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_1234" Association="Self.FK_1234">
-            <End Role="Book" EntitySet="Book" />
-            <End Role="OnCard" EntitySet="OnCard" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -79,7 +48,7 @@ warning 6002: The table/view 'Books.dbo.OnCard' does not have a primary key defi
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="OnCards" Relationship="Self.FK_1234" FromRole="Book" ToRole="OnCard" />
+          <Property Name="OnCard" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -91,35 +60,9 @@ warning 6002: The table/view 'Books.dbo.OnCard' does not have a primary key defi
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="OnCard">
-          <Key>
-            <PropertyRef Name="Quantity" />
-            <PropertyRef Name="BookId" />
-          </Key>
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="BookId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Book" Relationship="Self.FK_1234" FromRole="OnCard" ToRole="Book" />
-        </EntityType>
-        <Association Name="FK_1234">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
-          <End Role="OnCard" Type="Self.OnCard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="OnCard">
-              <PropertyRef Name="BookId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="BooksEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Books" EntityType="Self.Book" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="OnCards" EntityType="Self.OnCard" />
-          <AssociationSet Name="FK_1234" Association="Self.FK_1234">
-            <End Role="Book" EntitySet="Books" />
-            <End Role="OnCard" EntitySet="OnCards" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -137,6 +80,7 @@ warning 6002: The table/view 'Books.dbo.OnCard' does not have a primary key defi
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Genre" ColumnName="Genre" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="OnCard" ColumnName="OnCard" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -148,14 +92,6 @@ warning 6002: The table/view 'Books.dbo.OnCard' does not have a primary key defi
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OnCards">
-            <EntityTypeMapping TypeName="BooksModel.OnCard">
-              <MappingFragment StoreEntitySet="OnCard">
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="BookId" ColumnName="BookId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

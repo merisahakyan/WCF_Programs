@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BookShop.ServiceReference1 {
+namespace BookShop.BookService {
     using System.Runtime.Serialization;
     using System;
     
@@ -38,7 +38,7 @@ namespace BookShop.ServiceReference1 {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BookShop.ServiceReference1.OnCard[] OnCardsField;
+        private int OnCardField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal PriceField;
@@ -122,14 +122,14 @@ namespace BookShop.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public BookShop.ServiceReference1.OnCard[] OnCards {
+        public int OnCard {
             get {
-                return this.OnCardsField;
+                return this.OnCardField;
             }
             set {
-                if ((object.ReferenceEquals(this.OnCardsField, value) != true)) {
-                    this.OnCardsField = value;
-                    this.RaisePropertyChanged("OnCards");
+                if ((this.OnCardField.Equals(value) != true)) {
+                    this.OnCardField = value;
+                    this.RaisePropertyChanged("OnCard");
                 }
             }
         }
@@ -170,137 +170,60 @@ namespace BookShop.ServiceReference1 {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OnCard", Namespace="http://schemas.datacontract.org/2004/07/BookService")]
-    [System.SerializableAttribute()]
-    public partial class OnCard : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BookShop.ServiceReference1.Book BookField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BookIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int QuantityField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public BookShop.ServiceReference1.Book Book {
-            get {
-                return this.BookField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BookField, value) != true)) {
-                    this.BookField = value;
-                    this.RaisePropertyChanged("Book");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BookId {
-            get {
-                return this.BookIdField;
-            }
-            set {
-                if ((this.BookIdField.Equals(value) != true)) {
-                    this.BookIdField = value;
-                    this.RaisePropertyChanged("BookId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Quantity {
-            get {
-                return this.QuantityField;
-            }
-            set {
-                if ((this.QuantityField.Equals(value) != true)) {
-                    this.QuantityField = value;
-                    this.RaisePropertyChanged("Quantity");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IBookShop")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BookService.IBookShop")]
     public interface IBookShop {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/GetBooks", ReplyAction="http://tempuri.org/IBookShop/GetBooksResponse")]
-        BookShop.ServiceReference1.Book[] GetBooks();
+        BookShop.BookService.Book[] GetBooks();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/GetBooks", ReplyAction="http://tempuri.org/IBookShop/GetBooksResponse")]
-        System.Threading.Tasks.Task<BookShop.ServiceReference1.Book[]> GetBooksAsync();
+        System.Threading.Tasks.Task<BookShop.BookService.Book[]> GetBooksAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/GetBookByID", ReplyAction="http://tempuri.org/IBookShop/GetBookByIDResponse")]
-        BookShop.ServiceReference1.Book GetBookByID(string id);
+        BookShop.BookService.Book GetBookByID(string id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/GetBookByID", ReplyAction="http://tempuri.org/IBookShop/GetBookByIDResponse")]
-        System.Threading.Tasks.Task<BookShop.ServiceReference1.Book> GetBookByIDAsync(string id);
+        System.Threading.Tasks.Task<BookShop.BookService.Book> GetBookByIDAsync(string id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/GetBooksByAuthor", ReplyAction="http://tempuri.org/IBookShop/GetBooksByAuthorResponse")]
-        BookShop.ServiceReference1.Book[] GetBooksByAuthor(string author);
+        BookShop.BookService.Book[] GetBooksByAuthor(string author);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/GetBooksByAuthor", ReplyAction="http://tempuri.org/IBookShop/GetBooksByAuthorResponse")]
-        System.Threading.Tasks.Task<BookShop.ServiceReference1.Book[]> GetBooksByAuthorAsync(string author);
+        System.Threading.Tasks.Task<BookShop.BookService.Book[]> GetBooksByAuthorAsync(string author);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/GetBooksByName", ReplyAction="http://tempuri.org/IBookShop/GetBooksByNameResponse")]
-        BookShop.ServiceReference1.Book[] GetBooksByName(string name);
+        BookShop.BookService.Book[] GetBooksByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/GetBooksByName", ReplyAction="http://tempuri.org/IBookShop/GetBooksByNameResponse")]
-        System.Threading.Tasks.Task<BookShop.ServiceReference1.Book[]> GetBooksByNameAsync(string name);
+        System.Threading.Tasks.Task<BookShop.BookService.Book[]> GetBooksByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/GetBooksByGenre", ReplyAction="http://tempuri.org/IBookShop/GetBooksByGenreResponse")]
-        BookShop.ServiceReference1.Book[] GetBooksByGenre(string genre);
+        BookShop.BookService.Book[] GetBooksByGenre(string genre);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/GetBooksByGenre", ReplyAction="http://tempuri.org/IBookShop/GetBooksByGenreResponse")]
-        System.Threading.Tasks.Task<BookShop.ServiceReference1.Book[]> GetBooksByGenreAsync(string genre);
+        System.Threading.Tasks.Task<BookShop.BookService.Book[]> GetBooksByGenreAsync(string genre);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/GetBooksByPrice", ReplyAction="http://tempuri.org/IBookShop/GetBooksByPriceResponse")]
-        BookShop.ServiceReference1.Book[] GetBooksByPrice(string price);
+        BookShop.BookService.Book[] GetBooksByPrice(string price);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/GetBooksByPrice", ReplyAction="http://tempuri.org/IBookShop/GetBooksByPriceResponse")]
-        System.Threading.Tasks.Task<BookShop.ServiceReference1.Book[]> GetBooksByPriceAsync(string price);
+        System.Threading.Tasks.Task<BookShop.BookService.Book[]> GetBooksByPriceAsync(string price);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/Search", ReplyAction="http://tempuri.org/IBookShop/SearchResponse")]
-        BookShop.ServiceReference1.Book[] Search(string value);
+        BookShop.BookService.Book[] Search(string value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookShop/Search", ReplyAction="http://tempuri.org/IBookShop/SearchResponse")]
-        System.Threading.Tasks.Task<BookShop.ServiceReference1.Book[]> SearchAsync(string value);
+        System.Threading.Tasks.Task<BookShop.BookService.Book[]> SearchAsync(string value);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IBookShopChannel : BookShop.ServiceReference1.IBookShop, System.ServiceModel.IClientChannel {
+    public interface IBookShopChannel : BookShop.BookService.IBookShop, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class BookShopClient : System.ServiceModel.ClientBase<BookShop.ServiceReference1.IBookShop>, BookShop.ServiceReference1.IBookShop {
+    public partial class BookShopClient : System.ServiceModel.ClientBase<BookShop.BookService.IBookShop>, BookShop.BookService.IBookShop {
         
         public BookShopClient() {
         }
@@ -321,78 +244,78 @@ namespace BookShop.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public BookShop.ServiceReference1.Book[] GetBooks() {
+        public BookShop.BookService.Book[] GetBooks() {
             return base.Channel.GetBooks();
         }
         
-        public System.Threading.Tasks.Task<BookShop.ServiceReference1.Book[]> GetBooksAsync() {
+        public System.Threading.Tasks.Task<BookShop.BookService.Book[]> GetBooksAsync() {
             return base.Channel.GetBooksAsync();
         }
         
-        public BookShop.ServiceReference1.Book GetBookByID(string id) {
+        public BookShop.BookService.Book GetBookByID(string id) {
             return base.Channel.GetBookByID(id);
         }
         
-        public System.Threading.Tasks.Task<BookShop.ServiceReference1.Book> GetBookByIDAsync(string id) {
+        public System.Threading.Tasks.Task<BookShop.BookService.Book> GetBookByIDAsync(string id) {
             return base.Channel.GetBookByIDAsync(id);
         }
         
-        public BookShop.ServiceReference1.Book[] GetBooksByAuthor(string author) {
+        public BookShop.BookService.Book[] GetBooksByAuthor(string author) {
             return base.Channel.GetBooksByAuthor(author);
         }
         
-        public System.Threading.Tasks.Task<BookShop.ServiceReference1.Book[]> GetBooksByAuthorAsync(string author) {
+        public System.Threading.Tasks.Task<BookShop.BookService.Book[]> GetBooksByAuthorAsync(string author) {
             return base.Channel.GetBooksByAuthorAsync(author);
         }
         
-        public BookShop.ServiceReference1.Book[] GetBooksByName(string name) {
+        public BookShop.BookService.Book[] GetBooksByName(string name) {
             return base.Channel.GetBooksByName(name);
         }
         
-        public System.Threading.Tasks.Task<BookShop.ServiceReference1.Book[]> GetBooksByNameAsync(string name) {
+        public System.Threading.Tasks.Task<BookShop.BookService.Book[]> GetBooksByNameAsync(string name) {
             return base.Channel.GetBooksByNameAsync(name);
         }
         
-        public BookShop.ServiceReference1.Book[] GetBooksByGenre(string genre) {
+        public BookShop.BookService.Book[] GetBooksByGenre(string genre) {
             return base.Channel.GetBooksByGenre(genre);
         }
         
-        public System.Threading.Tasks.Task<BookShop.ServiceReference1.Book[]> GetBooksByGenreAsync(string genre) {
+        public System.Threading.Tasks.Task<BookShop.BookService.Book[]> GetBooksByGenreAsync(string genre) {
             return base.Channel.GetBooksByGenreAsync(genre);
         }
         
-        public BookShop.ServiceReference1.Book[] GetBooksByPrice(string price) {
+        public BookShop.BookService.Book[] GetBooksByPrice(string price) {
             return base.Channel.GetBooksByPrice(price);
         }
         
-        public System.Threading.Tasks.Task<BookShop.ServiceReference1.Book[]> GetBooksByPriceAsync(string price) {
+        public System.Threading.Tasks.Task<BookShop.BookService.Book[]> GetBooksByPriceAsync(string price) {
             return base.Channel.GetBooksByPriceAsync(price);
         }
         
-        public BookShop.ServiceReference1.Book[] Search(string value) {
+        public BookShop.BookService.Book[] Search(string value) {
             return base.Channel.Search(value);
         }
         
-        public System.Threading.Tasks.Task<BookShop.ServiceReference1.Book[]> SearchAsync(string value) {
+        public System.Threading.Tasks.Task<BookShop.BookService.Book[]> SearchAsync(string value) {
             return base.Channel.SearchAsync(value);
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IOnCard")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BookService.IOnCard")]
     public interface IOnCard {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOnCard/GetOnCardBooks", ReplyAction="http://tempuri.org/IOnCard/GetOnCardBooksResponse")]
-        BookShop.ServiceReference1.OnCard[] GetOnCardBooks();
+        BookShop.BookService.Book[] GetOnCardBooks();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOnCard/GetOnCardBooks", ReplyAction="http://tempuri.org/IOnCard/GetOnCardBooksResponse")]
-        System.Threading.Tasks.Task<BookShop.ServiceReference1.OnCard[]> GetOnCardBooksAsync();
+        System.Threading.Tasks.Task<BookShop.BookService.Book[]> GetOnCardBooksAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOnCard/GetOnCardBookByID", ReplyAction="http://tempuri.org/IOnCard/GetOnCardBookByIDResponse")]
-        BookShop.ServiceReference1.OnCard GetOnCardBookByID(string id);
+        BookShop.BookService.Book GetOnCardBookByID(string id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOnCard/GetOnCardBookByID", ReplyAction="http://tempuri.org/IOnCard/GetOnCardBookByIDResponse")]
-        System.Threading.Tasks.Task<BookShop.ServiceReference1.OnCard> GetOnCardBookByIDAsync(string id);
+        System.Threading.Tasks.Task<BookShop.BookService.Book> GetOnCardBookByIDAsync(string id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOnCard/RemoveFromCard", ReplyAction="http://tempuri.org/IOnCard/RemoveFromCardResponse")]
         void RemoveFromCard(string id);
@@ -408,12 +331,12 @@ namespace BookShop.ServiceReference1 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IOnCardChannel : BookShop.ServiceReference1.IOnCard, System.ServiceModel.IClientChannel {
+    public interface IOnCardChannel : BookShop.BookService.IOnCard, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class OnCardClient : System.ServiceModel.ClientBase<BookShop.ServiceReference1.IOnCard>, BookShop.ServiceReference1.IOnCard {
+    public partial class OnCardClient : System.ServiceModel.ClientBase<BookShop.BookService.IOnCard>, BookShop.BookService.IOnCard {
         
         public OnCardClient() {
         }
@@ -434,19 +357,19 @@ namespace BookShop.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public BookShop.ServiceReference1.OnCard[] GetOnCardBooks() {
+        public BookShop.BookService.Book[] GetOnCardBooks() {
             return base.Channel.GetOnCardBooks();
         }
         
-        public System.Threading.Tasks.Task<BookShop.ServiceReference1.OnCard[]> GetOnCardBooksAsync() {
+        public System.Threading.Tasks.Task<BookShop.BookService.Book[]> GetOnCardBooksAsync() {
             return base.Channel.GetOnCardBooksAsync();
         }
         
-        public BookShop.ServiceReference1.OnCard GetOnCardBookByID(string id) {
+        public BookShop.BookService.Book GetOnCardBookByID(string id) {
             return base.Channel.GetOnCardBookByID(id);
         }
         
-        public System.Threading.Tasks.Task<BookShop.ServiceReference1.OnCard> GetOnCardBookByIDAsync(string id) {
+        public System.Threading.Tasks.Task<BookShop.BookService.Book> GetOnCardBookByIDAsync(string id) {
             return base.Channel.GetOnCardBookByIDAsync(id);
         }
         

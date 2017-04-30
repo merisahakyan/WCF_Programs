@@ -27,6 +27,5 @@ namespace BookService
     
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<OnCard> OnCards { get; set; }
     }
 }

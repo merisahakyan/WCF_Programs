@@ -4,11 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="40bfbaa43ab2499c96f2a00fd96e3fee" Name="Diagram1">
-        <EntityTypeShape EntityType="BooksModel.Book" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="BooksModel.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BooksModel.OnCard" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <AssociationConnector Association="BooksModel.FK_1234" ManuallyRouted="false" />
+      <Diagram DiagramId="0c14a4892c5f44b7a731d79463165d01" Name="Diagram1">
+        <EntityTypeShape EntityType="BooksModel.Book" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

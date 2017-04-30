@@ -11,10 +11,10 @@ namespace BookService
     public interface IOnCard
     {
         [OperationContract]
-        List<OnCard> GetOnCardBooks();
+        List<Book> GetOnCardBooks();
 
         [OperationContract]
-        OnCard GetOnCardBookByID(string id);
+        Book GetOnCardBookByID(string id);
 
         [OperationContract]
         void RemoveFromCard(string id);

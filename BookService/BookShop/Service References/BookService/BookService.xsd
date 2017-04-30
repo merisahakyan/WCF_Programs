@@ -13,24 +13,10 @@
       <xs:element minOccurs="0" name="Genre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="OnCards" nillable="true" type="tns:ArrayOfOnCard" />
+      <xs:element minOccurs="0" name="OnCard" type="xs:int" />
       <xs:element minOccurs="0" name="Price" type="xs:decimal" />
       <xs:element minOccurs="0" name="Quantity" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Book" nillable="true" type="tns:Book" />
-  <xs:complexType name="ArrayOfOnCard">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="OnCard" nillable="true" type="tns:OnCard" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfOnCard" nillable="true" type="tns:ArrayOfOnCard" />
-  <xs:complexType name="OnCard">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Book" nillable="true" type="tns:Book" />
-      <xs:element minOccurs="0" name="BookId" type="xs:int" />
-      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="OnCard" nillable="true" type="tns:OnCard" />
 </xs:schema>

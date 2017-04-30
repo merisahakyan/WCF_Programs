@@ -9,7 +9,7 @@ using System.Text;
 namespace BookService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
-    public class BookShopService : IBookShop
+    public class BookShopService : IBookShop, IOnCard
     {
         BooksEntities _entities = new BooksEntities();
 
@@ -20,53 +20,31 @@ namespace BookService
 
         public void AddToCard(string id)
         {
+            id = id.Trim('i');
             int i = int.Parse(id);
             foreach (var b in _entities.Books)
             {
                 if (b.ID == i && b.Quantity > 0)
                 {
-                    if(Contains(b))
+                    if (b.OnCard > 0)
                     {
-                        ChangeQuantity(b, 1);
+                        b.OnCard++;
                         b.Quantity--;
                     }
                     else
                     {
-                        OnCard oc = new OnCard();
-                        oc.BookId = b.ID;
-                        oc.Quantity = 1;
-                        _entities.OnCards.Add(oc);
+                        b.OnCard = 1;
+                        b.Quantity--;
                     }
                 }
             }
-            
-
+            _entities.SaveChanges();
         }
 
-        private bool Contains(Book b)
-        {
-            foreach (var oc in _entities.OnCards)
-            {
-                if (oc.Book == b)
-                    return true;
-            }
-            return false;
-        }
-        private void ChangeQuantity(Book b,int ch)
-        {
-            foreach(var c in _entities.OnCards)
-            {
-                if(c.Book==b)
-                    switch(ch>0)
-                    {
-                        case true:c.Quantity++;break;
-                        case false:c.Quantity--;break;
-                    }
-            }
-        }
 
         public Book GetBookByID(string id)
         {
+            id = id.Trim('i');
             int i = int.Parse(id);
             Book book = null;
             foreach (var m in _entities.Books)
@@ -130,13 +108,14 @@ namespace BookService
             return list;
         }
 
-        public OnCard GetOnCardBookByID(string id)
+        public Book GetOnCardBookByID(string id)
         {
+            id = id.Trim('i');
             int i = int.Parse(id);
-            OnCard book = null;
-            foreach (var m in _entities.OnCards)
+            Book book = null;
+            foreach (var m in _entities.Books)
             {
-                if (m.BookId == i)
+                if (m.ID == i && m.OnCard > 0)
                 {
                     book = m;
                     break;
@@ -145,23 +124,27 @@ namespace BookService
             return book;
         }
 
-        public List<OnCard> GetOnCardBooks()
+        public List<Book> GetOnCardBooks()
         {
-            return _entities.OnCards.ToList();
+            //var q = from b in _entities.Books
+            //        where b.OnCard > 0
+            //        select b;
+            //return q.ToList();
+            return _entities.Books.Where((b) => (b.OnCard > 0)).Select((s) => (s)).ToList();
         }
 
         public void RemoveFromCard(string id)
         {
-            int i = int.Parse(id);
-            foreach (var b in _entities.OnCards)
+            int i = int.Parse(id.Trim('i'));
+            foreach (var  b in _entities.Books)
             {
-                if(b.BookId==i && b.Quantity>0)
+                if (b.ID == i && b.OnCard > 0)
                 {
-                    var book = GetBookByID(id);
-                    ChangeQuantity(book, -1);
+                    b.OnCard--;
+                    b.Quantity++;
                 }
             }
-            
+            _entities.SaveChanges();
         }
 
         public List<Book> Search(string value)

@@ -16,11 +16,6 @@ namespace BookService
     [DataContract]
     public partial class Book
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Book()
-        {
-            this.OnCards = new HashSet<OnCard>();
-        }
         [DataMember]
         public int ID { get; set; }
         [DataMember]
@@ -35,9 +30,7 @@ namespace BookService
         public string Genre { get; set; }
         [DataMember]
         public int Quantity { get; set; }
-
         [DataMember]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OnCard> OnCards { get; set; }
+        public int OnCard { get; set; }
     }
 }

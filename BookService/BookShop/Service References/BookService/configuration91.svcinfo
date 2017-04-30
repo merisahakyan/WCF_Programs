@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="Yul3BkXdxJKWLAwmBzSpu6P0mEA=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="5PGJkUm/O3p/Ip29vS7MFbPOnko=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IBookShop">
       <properties>
@@ -221,10 +221,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IBookShop" contract="ServiceReference1.IBookShop" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/BookService/Service1/" bindingConfiguration="BasicHttpBinding_IBookShop">
+    <endpoint name="BasicHttpBinding_IBookShop" contract="BookService.IBookShop" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/BookService/BookShopService/" bindingConfiguration="BasicHttpBinding_IBookShop">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/Design_Time_Addresses/BookService/Service1/</serializedValue>
+          <serializedValue>http://localhost:8733/Design_Time_Addresses/BookService/BookShopService/</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -236,7 +236,7 @@
           <serializedValue>BasicHttpBinding_IBookShop</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ServiceReference1.IBookShop</serializedValue>
+          <serializedValue>BookService.IBookShop</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -306,10 +306,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IOnCard" contract="ServiceReference1.IOnCard" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/BookService/Service1/" bindingConfiguration="BasicHttpBinding_IOnCard">
+    <endpoint name="BasicHttpBinding_IOnCard" contract="BookService.IOnCard" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/BookService/BookShopService/" bindingConfiguration="BasicHttpBinding_IOnCard">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/Design_Time_Addresses/BookService/Service1/</serializedValue>
+          <serializedValue>http://localhost:8733/Design_Time_Addresses/BookService/BookShopService/</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -321,7 +321,7 @@
           <serializedValue>BasicHttpBinding_IOnCard</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ServiceReference1.IOnCard</serializedValue>
+          <serializedValue>BookService.IOnCard</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
