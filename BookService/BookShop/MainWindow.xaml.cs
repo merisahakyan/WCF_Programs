@@ -65,7 +65,7 @@ namespace BookShop
                 for(int i=0;i<6;i++)
                 {
                     c[i] = new ColumnDefinition();
-                    c[i].Width = new GridLength(1, GridUnitType.Star);
+                    c[i].Width = new GridLength(((System.Windows.Controls.Panel)Application.Current.MainWindow.Content).ActualWidth*4/36);
                 }
                 
                 label = new Label();
