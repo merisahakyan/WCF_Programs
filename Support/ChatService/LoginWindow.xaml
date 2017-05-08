@@ -1,0 +1,21 @@
+﻿<Window x:Class="ChatService.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatService"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="300" Width="300">
+    <Grid>
+        <StackPanel>
+            <Label Content="" x:Name="validationlabel" Foreground="Red"/>
+            <Label Content="Username:" HorizontalAlignment="Center"/>
+            <TextBox Width="100" x:Name="usernamebox"/>
+            <Label Content="Password:" HorizontalAlignment="Center"/>
+            <PasswordBox Width="100" x:Name="passwordbox"/>
+            <Button x:Name="loginbutton" Width="40" Height="20" 
+                    Content="Sing In"
+                    Margin="0 10 0 0" Click="loginbutton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

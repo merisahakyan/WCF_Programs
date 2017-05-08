@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Support;
 using System.ServiceModel;
 
@@ -23,24 +14,26 @@ namespace ChatService
         SupportServiceContext _context = new SupportServiceContext();
         List<Company> companies = new List<Company>();
         List<Messaging> messagess = new List<Messaging>();
+        public static bool log = false;
         int compID = -1;
 
-        User user;
+        public static User user;
         public MainWindow()
         {
             InitializeComponent();
+
             if (_context.Users
-                .Where((m) => (m.Username.Equals(Environment.UserDomainName)))
-                .Select((s) => (s)).Count() == 0)
+                 .Where((m) => (m.Usernae.Equals(Environment.UserDomainName)))
+                 .Select((s) => (s)).Count() == 0)
             {
-                user = new User { Username = Environment.UserDomainName, UserID=2};
+                user = new User { Usernae = Environment.UserDomainName, Password = "password" };
                 _context.Users.Add(user);
                 //_context.SaveChanges();
             }
             else
             {
-                user=_context.Users.
-                Where((m) => (m.Username.Equals(System.Environment.UserName))).
+                user = _context.Users.
+                Where((m) => (m.Usernae.Equals(System.Environment.UserName))).
                 Select((s) => (s)).First();
             }
 
@@ -59,7 +52,7 @@ namespace ChatService
                     messages.Text = "";
                     companyname.Content = m.CompanyName;
                     sendbutton.IsEnabled = true;
-                    GetMessages(m.CompanyID);
+                    GetMessages(m.CompanyID, user.UserID);
                     foreach (var n in messagess)
                     {
                         messages.Text += n.Sender + "-->" + n.MessageText + System.Environment.NewLine;
@@ -74,34 +67,40 @@ namespace ChatService
         {
             companies = _context.Companies.ToList();
         }
-        void GetMessages(int companyID)
+        void GetMessages(int companyID, int userID)
         {
-            messagess = _context.Messagings.Where((m) => (m.CompanyID == companyID)).Select((s) => (s)).ToList();
+            messagess = _context.Messagings.
+                Where((m) => (m.CompanyID == companyID && m.UserID == userID)).
+                Select((s) => (s)).
+                ToList();
         }
 
 
         public void AddMessage(string message, string sender, int userid, int companyid)
         {
-            Messaging mess = new Messaging();
 
-            mess.MessageText = message;
-            mess.Sender = sender;
-            mess.UserID = userid;
-            mess.CompanyID = companyid;
-            mess.Time = DateTime.Now;
+            using (var db = new SupportServiceContext())
+            {
+                Messaging mess = new Messaging();
 
+                mess.MessageText = message;
+                mess.Sender = sender;
+                mess.UserID = userid;
+                mess.CompanyID = companyid;
+                mess.Time = DateTime.Now;
 
+                db.Database.ExecuteSqlCommand($"insert into Messaging (UserID,CompanyID,MessageText,[Time],Sender) values ({mess.UserID},{mess.CompanyID},'{mess.MessageText}',{mess.Time.Day}/{mess.Time.Month}/{mess.Time.Year},'{mess.Sender}')");
+                db.SaveChanges();
 
-            _context.Messagings.Add(mess);
-            //_context.SaveChanges();
+            }
         }
 
 
 
         private void sendbutton_Click(object sender, RoutedEventArgs e)
         {
-            AddMessage(message.Text, user.Username, user.UserID, compID);
-            messages.Text += user.Username + "-->" + message.Text + System.Environment.NewLine;
+            AddMessage(message.Text, user.Usernae, user.UserID, compID);
+            messages.Text += user.Usernae + "-->" + message.Text + System.Environment.NewLine;
             message.Text = "";
         }
     }

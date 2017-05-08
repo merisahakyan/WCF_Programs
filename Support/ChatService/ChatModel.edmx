@@ -48,10 +48,12 @@ warning 6002: The table/view 'SupportService.dbo.Users' does not have a primary 
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserID" />
-            <PropertyRef Name="Username" />
+            <PropertyRef Name="Usernae" />
+            <PropertyRef Name="Password" />
           </Key>
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Usernae" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityContainer Name="SupportServiceModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -74,7 +76,8 @@ warning 6002: The table/view 'SupportService.dbo.Users' does not have a primary 
           <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Users].[UserID] AS [UserID], 
-    [Users].[Username] AS [Username]
+    [Users].[Usernae] AS [Usernae], 
+    [Users].[Password] AS [Password]
     FROM [dbo].[Users] AS [Users]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
@@ -120,10 +123,12 @@ warning 6002: The table/view 'SupportService.dbo.Users' does not have a primary 
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserID" />
-            <PropertyRef Name="Username" />
+            <PropertyRef Name="Usernae" />
+            <PropertyRef Name="Password" />
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Usernae" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityContainer Name="SupportServiceContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
@@ -172,7 +177,8 @@ warning 6002: The table/view 'SupportService.dbo.Users' does not have a primary 
             <EntityTypeMapping TypeName="SupportServiceModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Usernae" ColumnName="Usernae" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
