@@ -24,9 +24,26 @@ namespace ChatService
         List<Company> companies = new List<Company>();
         List<Messaging> messagess = new List<Messaging>();
         int compID = -1;
+
+        User user;
         public MainWindow()
         {
             InitializeComponent();
+            if (_context.Users
+                .Where((m) => (m.Username.Equals(Environment.UserDomainName)))
+                .Select((s) => (s)).Count() == 0)
+            {
+                user = new User { Username = Environment.UserDomainName, UserID=2};
+                _context.Users.Add(user);
+                //_context.SaveChanges();
+            }
+            else
+            {
+                user=_context.Users.
+                Where((m) => (m.Username.Equals(System.Environment.UserName))).
+                Select((s) => (s)).First();
+            }
+
             sendbutton.IsEnabled = false;
             host = new ServiceHost(typeof(MainWindow), new Uri("net.tcp://localhost:7000"));
             host.AddServiceEndpoint(typeof(IMessage), new NetTcpBinding(), "");
@@ -74,16 +91,17 @@ namespace ChatService
             mess.Time = DateTime.Now;
 
 
+
             _context.Messagings.Add(mess);
-            _context.SaveChanges();
+            //_context.SaveChanges();
         }
 
-        
+
 
         private void sendbutton_Click(object sender, RoutedEventArgs e)
         {
-            AddMessage(message.Text, "Meri", 1, compID);
-            messages.Text += "Meri" + "-->" + message.Text + System.Environment.NewLine;
+            AddMessage(message.Text, user.Username, user.UserID, compID);
+            messages.Text += user.Username + "-->" + message.Text + System.Environment.NewLine;
             message.Text = "";
         }
     }
