@@ -1,0 +1,27 @@
+﻿<Window x:Class="ChatService.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatService"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2.5*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Background="AliceBlue">
+            <Label x:Name="companylabel" Content="Companies"/>
+            <ListBox x:Name="companieslistbox"/>
+        </StackPanel>
+        <StackPanel x:Name="messagingpanel" Grid.Column="1" Background="AntiqueWhite">
+            <Label x:Name="companyname">Company Name:</Label>
+            <TextBlock x:Name="messages" Width="350" Height="195"  Background="WhiteSmoke"/>
+            <StackPanel Orientation="Horizontal" Height="80" Margin="5">
+                <TextBox x:Name="message" Width="300" Margin="5"/>
+                <Button x:Name="sendbutton" Margin="0 5" Width="45" Content="Send" Background="Azure" Click="sendbutton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
