@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace BookService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class BookShopService : IBookShop, IOnCard
     {
         BooksEntities _entities = new BooksEntities();
@@ -131,7 +130,7 @@ namespace BookService
         public void RemoveFromCard(string id)
         {
             int i = int.Parse(id.Trim('i'));
-            foreach (var  b in _entities.Books)
+            foreach (var b in _entities.Books)
             {
                 if (b.ID == i && b.OnCard > 0)
                 {
