@@ -41,6 +41,9 @@ namespace ChatService
             else
             {
                 validationlabel.Content = "";
+                this.Hide();
+                MainWindow mw = new MainWindow();
+                mw.Show();
             }
         }
     }

@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Support;
 using System.ServiceModel;
+using System.Net.Mail;
+using System.Net;
 
 namespace ChatService
 {
@@ -21,21 +23,6 @@ namespace ChatService
         public MainWindow()
         {
             InitializeComponent();
-
-            if (_context.Users
-                 .Where((m) => (m.Usernae.Equals(Environment.UserDomainName)))
-                 .Select((s) => (s)).Count() == 0)
-            {
-                user = new User { Usernae = Environment.UserDomainName, Password = "password" };
-                _context.Users.Add(user);
-                //_context.SaveChanges();
-            }
-            else
-            {
-                user = _context.Users.
-                Where((m) => (m.Usernae.Equals(System.Environment.UserName))).
-                Select((s) => (s)).First();
-            }
 
             sendbutton.IsEnabled = false;
             host = new ServiceHost(typeof(MainWindow), new Uri("net.tcp://localhost:7000"));
@@ -78,21 +65,35 @@ namespace ChatService
 
         public void AddMessage(string message, string sender, int userid, int companyid)
         {
-
-            using (var db = new SupportServiceContext())
+            Messaging mess = new Messaging();
+            try
             {
-                Messaging mess = new Messaging();
+                Company c = _context.Companies.Where((b) => (b.CompanyID == companyid)).Select((s) => (s)).First();
+                var a = new MailMessage("your mail", $"{c.email}");
+                a.Subject = $"New message from {userid}";
+                a.Body = message;
+                SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587);
+                mailer.Credentials = new NetworkCredential("your mail", "password");
+                mailer.EnableSsl = true;
+                mailer.Send(a);
+                using (var db = new SupportServiceContext())
+                {
+                    mess.MessageText = message;
+                    mess.Sender = sender;
+                    mess.UserID = userid;
+                    mess.CompanyID = companyid;
+                    mess.Time = DateTime.Now;
 
-                mess.MessageText = message;
-                mess.Sender = sender;
-                mess.UserID = userid;
-                mess.CompanyID = companyid;
-                mess.Time = DateTime.Now;
-
-                db.Database.ExecuteSqlCommand($"insert into Messaging (UserID,CompanyID,MessageText,[Time],Sender) values ({mess.UserID},{mess.CompanyID},'{mess.MessageText}',{mess.Time.Day}/{mess.Time.Month}/{mess.Time.Year},'{mess.Sender}')");
-                db.SaveChanges();
+                    db.Database.ExecuteSqlCommand($"insert into Messaging (UserID,CompanyID,MessageText,[Time],Sender) values ({mess.UserID},{mess.CompanyID},'{mess.MessageText}',{mess.Time.Day}/{mess.Time.Month}/{mess.Time.Year},'{mess.Sender}')");
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
 
             }
+            
+            
         }
 
 
