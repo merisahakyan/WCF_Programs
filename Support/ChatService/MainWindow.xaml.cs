@@ -69,13 +69,20 @@ namespace ChatService
             try
             {
                 Company c = _context.Companies.Where((b) => (b.CompanyID == companyid)).Select((s) => (s)).First();
-                var a = new MailMessage("your mail", $"{c.email}");
-                a.Subject = $"New message from {userid}";
-                a.Body = message;
-                SmtpClient mailer = new SmtpClient("smtp.gmail.com", 587);
-                mailer.Credentials = new NetworkCredential("your mail", "password");
-                mailer.EnableSsl = true;
-                mailer.Send(a);
+                User u = _context.Users.Where((b) => (b.UserID == userid)).Select((s) => (s)).First();
+                SmtpClient client = new SmtpClient();
+                client.Port = 587;
+                client.EnableSsl = true;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Host = "smtp.gmail.com";
+                client.Credentials = new System.Net.NetworkCredential("your gmail address", "password");
+                sender = "your gmail address";
+                MailMessage mail = new MailMessage(sender, c.email);
+                mail.Subject = $"SupportService from:'{userid}' user";
+                mail.Body = message;
+                client.Send(mail);
+
                 using (var db = new SupportServiceContext())
                 {
                     mess.MessageText = message;
@@ -92,8 +99,7 @@ namespace ChatService
             {
 
             }
-            
-            
+
         }
 
 
