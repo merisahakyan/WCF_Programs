@@ -6,7 +6,9 @@ using System.Windows.Controls;
 using Support;
 using System.ServiceModel;
 using System.Net.Mail;
+
 using System.Net;
+
 
 namespace ChatService
 {
@@ -56,7 +58,7 @@ namespace ChatService
         }
         void GetMessages(int companyID, int userID)
         {
-            messagess = _context.Messagings.
+             messagess = _context.Messagings.
                 Where((m) => (m.CompanyID == companyID && m.UserID == userID)).
                 Select((s) => (s)).
                 ToList();
@@ -76,10 +78,10 @@ namespace ChatService
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
                 client.Host = "smtp.gmail.com";
-                client.Credentials = new System.Net.NetworkCredential("your gmail address", "password");
-                sender = "your gmail address";
+                client.Credentials = new System.Net.NetworkCredential("merisahakyan1@gmail.com", "your password");
+                sender = "merisahakyan1@gmail.com";
                 MailMessage mail = new MailMessage(sender, c.email);
-                mail.Subject = $"SupportService from:'{userid}' user";
+                mail.Subject = $"SupportService from user:'{userid}'";
                 mail.Body = message;
                 client.Send(mail);
 
